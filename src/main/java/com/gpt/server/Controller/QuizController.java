@@ -21,7 +21,7 @@ public class QuizController {
         this.quizService = quizService;
     }
 
-    @PostMapping("/quiz")
+    @PostMapping("/quizzes")
     public ResponseEntity<Map<String, List<String>>> sendQuestion(@RequestBody QuizGameRequestDto requestDto) {
         return quizService.askQuestion(requestDto);
     }
