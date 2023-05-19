@@ -1,7 +1,9 @@
 package com.gpt.server.Controller;
 
+import com.gpt.server.dto.quiz.GptResponseDto;
 import com.gpt.server.dto.quiz.QuizGameRequestDto;
 import com.gpt.server.service.QuizService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,14 +17,12 @@ import java.util.Map;
 @RequestMapping("/api")
 public class QuizController {
 
-    private final QuizService quizService;
-
-    public QuizController(QuizService quizService) {
-        this.quizService = quizService;
-    }
+    @Autowired
+    private QuizService quizService;
 
     @PostMapping("/quizzes")
-    public ResponseEntity<Map<String, List<String>>> sendQuestion(@RequestBody QuizGameRequestDto requestDto) {
+    public GptResponseDto sendQuestion(@RequestBody QuizGameRequestDto requestDto) {
+
         return quizService.askQuestion(requestDto);
     }
 }
